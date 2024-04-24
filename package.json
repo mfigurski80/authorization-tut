@@ -1,15 +1,20 @@
 {
   "name": "cerbos-tut",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:cb": "docker run --rm --name cerbos -d -v $(pwd)/policies:/policies -p 3592:3592 ghcr.io/cerbos/cerbos:latest",
+    "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@cerbos/grpc": "^0.17.1",
-    "@cerbos/http": "^0.18.1"
+    "@cerbos/http": "^0.18.1",
+    "@tinyhttp/app": "^2.2.3",
+    "@tinyhttp/logger": "^2.0.0"
   }
 }
