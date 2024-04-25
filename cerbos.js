@@ -39,5 +39,12 @@ app.get('cerbos/cases', async (req, res) => {
   if (!can) return reply.forbidden(res);
   return res.send('<h3>Youve listed cases!</h3>');
 });
+app.post('cerbos/cases', async (req, res) => {
+  const user = authenticate(req);
+  if (!user) return reply.unauthed(res);
+  const can = await authorize(user, 'create', 'case');
+  if (!can) return reply.forbidden(res);
+  return res.send('<h3>Youve created a case!</h3>');
+});
 
 export default app;
