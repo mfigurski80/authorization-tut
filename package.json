@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start:cb": "docker run --rm --name cerbos -d -v $(pwd)/cerbos_policies:/policies -p 3592:3592 ghcr.io/cerbos/cerbos:latest",
-    "dev": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,10 +15,10 @@
     "@cerbos/grpc": "^0.17.1",
     "@cerbos/http": "^0.18.1",
     "@tinyhttp/app": "^2.2.3",
-    "@tinyhttp/logger": "^2.0.0"
+    "@tinyhttp/logger": "^2.0.0",
+    "simple-json-db": "^2.0.0"
   },
   "devDependencies": {
-    "cerbos": "^0.35.1",
-    "cerbosctl": "^0.35.1"
+    "nodemon": "^3.1.0"
   }
 }
