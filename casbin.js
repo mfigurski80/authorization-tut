@@ -3,8 +3,8 @@ import { newEnforcer, Helper } from 'casbin';
 import { authenticate, reply, roleDB } from './userSession.js';
 
 const policies = {
-  user: ['case:list', 'case:read'],
-  admin: ['case:list', 'case:read', 'case:create', 'case:update'],
+  user: ['case:read'],
+  admin: ['case:read', 'case:create', 'case:update'],
 };
 const casbinAdapter = {
   loadPolicy: async (model) => {
@@ -30,23 +30,20 @@ app.get('casbin/', async (req, res) => {
   if (!usr) return reply.unauthed(res);
   return res.send(`<h3>Hello ${usr}, from Casbin!</h3>`);
 });
-app.get('casbin/debug', async (_, res) => {
-  const dump = enforcer.getAllSubjects();
-  return res.json(dump);
-});
 app.get('casbin/case', async (req, res) => {
   const usr = authenticate(req);
   if (!usr) return reply.unauthed(res);
-  const [can, explain] = await enforcer.enforceEx(usr, 'case', 'list');
+  const [can, explain] = await enforcer.enforceEx(usr, 'case', 'read');
   if (!can) return reply.forbidden(res);
-  console.debug('Passed auth:', explain);
+  console.debug('[casbin] pass:', explain);
   return res.send('<h3>Youve listed cases!</h3>');
 });
 app.post('casbin/case', async (req, res) => {
   const usr = authenticate(req);
   if (!usr) return reply.unauthed(res);
-  const can = await enforcer.enforce(usr, 'case', 'create');
+  const [can, explain] = await enforcer.enforceEx(usr, 'case', 'create');
   if (!can) return reply.forbidden(res);
+  console.debug('[casbin] pass:', explain);
   return res.send('<h3>Youve created a case!</h3>');
 });
 
