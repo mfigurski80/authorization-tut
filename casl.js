@@ -14,7 +14,7 @@ const abilityFactory = async (user) => {
       switch (r) {
         case 'admin':
           can('create', 'case');
-          can('update', 'case');
+          can('delete', 'case');
         case 'user':
           can('read', 'case');
       }

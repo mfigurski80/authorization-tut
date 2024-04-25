@@ -4,7 +4,7 @@ import { authenticate, reply, roleDB } from './userSession.js';
 
 const policies = {
   user: ['case:read'],
-  admin: ['case:read', 'case:create', 'case:update'],
+  admin: ['case:read', 'case:create', 'case:delete'],
 };
 const casbinAdapter = {
   loadPolicy: async (model) => {
