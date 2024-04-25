@@ -8,9 +8,9 @@ resourcePolicy:
       is_localhost: |-
         P.attr.ip_address.inIPAddrRange("127.0.0.1/16")
   rules:
-    - actions: ['list', 'read']
+    - actions: ['read']
       effect: EFFECT_ALLOW
-      roles: ['user', 'admin'
+      roles: ['user', 'admin']
     - actions: ['create', 'delete']
       effect: EFFECT_ALLOW
       roles: ['admin']

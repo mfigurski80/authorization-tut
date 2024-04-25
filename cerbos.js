@@ -32,14 +32,14 @@ app.get('cerbos/', (req, res) => {
   if (!user) return reply.unauthed(res);
   return res.send(`<h3>Hello ${user} from Cerbos!</h3>`);
 });
-app.get('cerbos/cases', async (req, res) => {
+app.get('cerbos/case', async (req, res) => {
   const user = authenticate(req);
   if (!user) return reply.unauthed(res);
-  const can = await authorize(user, 'list', 'case');
+  const can = await authorize(user, 'read', 'case');
   if (!can) return reply.forbidden(res);
   return res.send('<h3>Youve listed cases!</h3>');
 });
-app.post('cerbos/cases', async (req, res) => {
+app.post('cerbos/case', async (req, res) => {
   const user = authenticate(req);
   if (!user) return reply.unauthed(res);
   const can = await authorize(user, 'create', 'case');
