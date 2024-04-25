@@ -1,0 +1,14 @@
+---
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  resource: "case"
+  version: "default"
+  variables:
+    local:
+      is_localhost: |-
+        P.attr.ip_address.inIPAddrRange("127.0.0.1/16")
+  rules:
+    - actions: ['list']
+      effect: EFFECT_ALLOW
+      roles:
+        - user

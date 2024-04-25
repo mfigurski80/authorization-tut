@@ -9,5 +9,5 @@ export function authenticate(req) {
 }
 
 export function forbid(res) {
-  return res.status(403).send('Forbidden');
+  return res.status(401).send('Forbidden');
 }
