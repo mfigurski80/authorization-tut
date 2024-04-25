@@ -1,0 +1,10 @@
+p, user, case, list
+p, user, case, read
+p, admin, case, list
+p, admin, case, read
+p, admin, case, create 
+p, admin, case, update
+
+g, miko, user
+g, admiko, admin
+

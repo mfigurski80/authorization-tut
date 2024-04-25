@@ -16,6 +16,7 @@
     "@cerbos/http": "^0.18.1",
     "@tinyhttp/app": "^2.2.3",
     "@tinyhttp/logger": "^2.0.0",
+    "casbin": "^5.29.0",
     "simple-json-db": "^2.0.0"
   },
   "devDependencies": {

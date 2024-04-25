@@ -1,8 +1,9 @@
 import { App } from '@tinyhttp/app';
 import { logger } from '@tinyhttp/logger';
 
-import cerbosRouter from "./cerbos.js";
 import { roleRouter } from "./userSession.js";
+import cerbosRouter from "./cerbos.js";
+import casbinRouter from "./casbin.js";
 
 const app = new App({
   noMatchHandler: (_, res) => {
@@ -14,8 +15,11 @@ app.get('/', (_, res) => {
   return res.send('<h3>Hello, World!</h3>');
 });
 
-app.use(cerbosRouter);
 app.use(roleRouter);
+app.use(cerbosRouter);
+app.use(casbinRouter);
 
-app.listen(3000, () => console.log('Server is running on http://localhost:3000'));
+app.listen(3000, () =>
+  console.log('Server is running on http://localhost:3000')
+);
 
