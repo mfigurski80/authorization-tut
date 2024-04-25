@@ -13,7 +13,7 @@ app.get('/', (_, res) => {
   return res.send('<h3>Hello, World!</h3>');
 });
 
-app.use('/cerbos', cerbosRouter);
+app.use(cerbosRouter);
 
 app.listen(3000, () => console.log('Server is running on http://localhost:3000'));
 
