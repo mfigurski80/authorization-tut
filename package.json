@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@casl/ability": "^6.7.1",
     "@cerbos/grpc": "^0.17.1",
     "@cerbos/http": "^0.18.1",
     "@tinyhttp/app": "^2.2.3",
