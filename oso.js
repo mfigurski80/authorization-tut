@@ -2,7 +2,6 @@ import { App } from '@tinyhttp/app';
 import { Oso } from 'oso-cloud';
 import { authenticate, reply, roleDB } from './userSession.js';
 
-
 /** NOTE: following policy is built into OSO cloud UI:
  * global {
  *   roles = ["user", "admin"];
@@ -28,14 +27,24 @@ app.get('oso/', (req, res) => {
   if (!usr) return reply.unauthed(res);
   res.send(`<h3>Hello ${usr} from Oso!</h3>`);
 });
-app.get('oso/debug', async (req, res) => {
+app.get('oso/case', async (req, res) => {
   const usr = authenticate(req);
   if (!usr) return reply.unauthed(res);
   const actor = { type: 'User', id: usr };
-  const feature = { type: 'Feature', id: 'debug' };
+  const feature = { type: 'Feature', id: 'case' };
   const decision = await oso.authorize(actor, 'read', feature);
   if (!decision) return reply.forbidden(res);
-  res.send(`<h3>Debugging Oso!</h3>`);
+  res.send(`<h3>Listing cases!</h3>`);
 });
+app.post('oso/case', async (req, res) => {
+  const usr = authenticate(req);
+  if (!usr) return reply.unauthed(res);
+  const actor = { type: 'User', id: usr };
+  const feature = { type: 'Feature', id: 'case' };
+  const decision = await oso.authorize(actor, 'create', feature);
+  if (!decision) return reply.forbidden(res);
+  res.send(`<h3>Creating a case!</h3>`);
+});
+
 
 export default app;
