@@ -7,7 +7,7 @@ import { authenticate, reply, roleDB } from './userSession.js';
  *   roles = ["user", "admin"];
  * }
  * actor User {}
- * resource Feature {
+ * resource Case {
  *   roles = ["viewer", "owner"];
  *   permissions = ["read", "create", "delete"];
  *   "viewer" if global "user";
@@ -31,7 +31,7 @@ app.get('oso/case', async (req, res) => {
   const usr = authenticate(req);
   if (!usr) return reply.unauthed(res);
   const actor = { type: 'User', id: usr };
-  const feature = { type: 'Feature', id: 'case' };
+  const feature = { type: 'Case', id: 'all' };
   const decision = await oso.authorize(actor, 'read', feature);
   if (!decision) return reply.forbidden(res);
   res.send(`<h3>Listing cases!</h3>`);
@@ -40,7 +40,7 @@ app.post('oso/case', async (req, res) => {
   const usr = authenticate(req);
   if (!usr) return reply.unauthed(res);
   const actor = { type: 'User', id: usr };
-  const feature = { type: 'Feature', id: 'case' };
+  const feature = { type: 'Case', id: 'all' };
   const decision = await oso.authorize(actor, 'create', feature);
   if (!decision) return reply.forbidden(res);
   res.send(`<h3>Creating a case!</h3>`);
