@@ -5,6 +5,7 @@ import { roleRouter } from "./userSession.js";
 import cerbosRouter from "./cerbos.js";
 import casbinRouter from "./casbin.js";
 import caslRouter from "./casl.js";
+import osoRouter from "./oso.js";
 
 const app = new App({
   noMatchHandler: (_, res) => {
@@ -20,6 +21,7 @@ app.use(roleRouter);
 app.use(cerbosRouter);
 app.use(casbinRouter);
 app.use(caslRouter);
+app.use(osoRouter);
 
 app.listen(3000, () =>
   console.log('Server is running on http://localhost:3000')
