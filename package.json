@@ -7,7 +7,8 @@
   "scripts": {
     "start:cb": "docker run --rm --name cerbos -d -v $(pwd)/cerbos_policies:/policies -p 3592:3592 ghcr.io/cerbos/cerbos:latest",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bench": "hyperfine 'http GET localhost:3000/oso/case -a miko:pass' 'http GET localhost:3000/casl/case -a miko:pass' 'http GET localhost:3000/casbin/case -a miko:pass' 'http GET localhost:3000/cerbos/case -a miko:pass' --warmup 5"
   },
   "author": "",
   "license": "ISC",
