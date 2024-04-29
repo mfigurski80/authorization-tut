@@ -29,5 +29,12 @@ app.get('accesscontrol/case', async (req, res) => {
   if (!allowed) return reply.forbidden(res);
   return res.send('<h3>Youve listed cases!</h3>');
 });
+app.post('accesscontrol/case', async (req, res) => {
+  const usr = authenticate(req);
+  if (!usr) return reply.unauthed(res);
+  const allowed = canUser(usr).createAny('case').granted;
+  if (!allowed) return reply.forbidden(res);
+  return res.send('<h3>Youve created a case!</h3>');
+});
 
 export default app;
