@@ -18,6 +18,7 @@
     "@cerbos/http": "^0.18.1",
     "@tinyhttp/app": "^2.2.3",
     "@tinyhttp/logger": "^2.0.0",
+    "accesscontrol": "^2.2.1",
     "casbin": "^5.29.0",
     "oso-cloud": "^1.6.1",
     "simple-json-db": "^2.0.0"
